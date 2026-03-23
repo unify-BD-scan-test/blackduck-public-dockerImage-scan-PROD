@@ -3,8 +3,8 @@ kind: workflow
 apiVersion: automation.cloudbees.io/v1alpha1
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 35 19 * * 1-5
+  # schedule:
+  #   - cron: 35 21 * * 1,4
 permissions:
   scm-token-own: read
   scm-token-org: read
@@ -20,7 +20,7 @@ jobs:
         uses: cloudbees-io/blackduck-sca-scan-dependency@v2
         with:
           ref: main
-          server-url: https://blackduck.saas-qa.beescloud.com
+          server-url: https://blackduck.saas-preprod.beescloud.com
           api-token: ${{ secrets.BD_API_TOKEN }}
           project-name: blackduck-public-dockerImage-scan
           project-version: 0.0.2
